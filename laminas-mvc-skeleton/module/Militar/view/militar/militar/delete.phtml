@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    </head>
+
+    <?php
+    $title = 'Remover Militar';
+    $url = $this->url('militar', ['action' => 'delete', 'nip' => $nip]);
+
+    $this->headTitle($title);
+    ?>
+    <h1><?= $this->escapeHtml($title) ?></h1>
+
+    <p>
+        Tem certeza que quer eliminar o 
+        "<?= $this->escapeHtml($militar->posto) ?>
+        <?= $this->escapeHtml($militar->nome) ?>" ?
+    </p>
+
+    <form action="<?= $url ?>" method="post">
+        <div class="form-group">
+            <input type="hidden" name="nip" value="<?= (int) $militar->nip ?>" />
+            <input type="submit" class="btn btn-danger" name="del" value="Sim" />
+            <input type="submit" class="btn btn-success" name="del" value="Não" />
+        </div>
+    </form>
+</html>

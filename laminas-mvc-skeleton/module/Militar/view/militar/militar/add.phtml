@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    </head>
+
+
+
+    <?php
+    $title = 'Adicionar Militar';
+    $this->headTitle($title);
+    ?>
+    <h1><?= $this->escapeHtml($title) ?></h1>
+    <?php
+// This provides a default CSS class and placeholder text for the nip element:
+    $nip = $form->get('nip');
+    $nip->setAttribute('class', 'form-control');
+    $nip->setAttribute('placeholder', 'Entre com o NIP.');
+
+// This provides a default CSS class and placeholder text for the posto element:
+    $posto = $form->get('posto');
+    $posto->setAttribute('class', 'form-control');
+    $posto->setAttribute('placeholder', 'Entre com o Posto.');
+
+
+// This provides a default CSS class and placeholder text for the artist element:
+    $nome = $form->get('nome');
+    $nome->setAttribute('class', 'form-control');
+    $nome->setAttribute('placeholder', 'Entre com o Nome.');
+
+// This provides CSS classes for the submit button:
+    $submit = $form->get('submit');
+    $submit->setAttribute('class', 'btn btn-primary');
+
+    $form->setAttribute('action', $this->url('militar', ['action' => 'add']));
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+    ?>
+    <?php // Wrap the elements in divs marked as form groups, and render the
+    // label, element, and errors separately within 
+    ?>
+    <div class="form-group">
+        <?= $this->formLabel($nip) ?>
+        <?= $this->formElement($nip) ?>
+        <?= $this->formElementErrors()->render($nip, ['class' => 'help-block']) ?>
+    </div>
+    <!-- comment --><div class="form-group">
+        <?= $this->formLabel($posto) ?>
+        <?= $this->formElement($posto) ?>
+        <?= $this->formElementErrors()->render($posto, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($nome) ?>
+        <?= $this->formElement($nome) ?>
+        <?= $this->formElementErrors()->render($nome, ['class' => 'help-block']) ?>
+    </div>
+
+    <?php
+    echo $this->formSubmit($submit);
+    echo $this->formHidden($form->get('nip'));
+    echo $this->form()->closeTag();
+    ?>
+</html>

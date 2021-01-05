@@ -1,0 +1,45 @@
+<?php
+$title = 'Militares';
+$this->headTitle($title);
+?>
+<html>
+    <head>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"> 
+    </head>
+
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('militar', ['action' => 'add']) ?>">Adicionar Militar</a>
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>NIP</th>
+        <th>Posto</th>
+        <th>Nome</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($this->paginator as $militar) : ?>
+        <tr>
+            <td><?= $this->escapeHtml($militar->nip) ?></td>
+            <td><?= $this->escapeHtml($militar->posto) ?></td>
+            <td><?= $this->escapeHtml($militar->nome) ?></td>
+            <td>
+                <a href="<?= $this->url('militar', ['action' => 'edit', 'nip' => $militar->nip]) ?>">Editar</a>
+                <a href="<?= $this->url('militar', ['action' => 'delete', 'nip' => $militar->nip]) ?>">Remover</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+<?= $this->paginationControl(
+    // The paginator object:
+    $this->paginator,
+    // The scrolling style:
+    'sliding',
+    // The partial to use to render the control:
+    'partial/paginator',
+    // The route to link to when a user clicks a control link:
+    ['route' => 'militar']
+) ?>
+</html>

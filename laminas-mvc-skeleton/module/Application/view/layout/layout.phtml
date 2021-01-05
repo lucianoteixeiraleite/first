@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    </head>
+    <?php // in module/Application/view/layout/layout.phtml: ?>
+    <div class="collapse navbar-collapse">
+        <?php // update to: ?>
+        <?=
+                $this->navigation('navigation')
+                ->menu()
+                ->setMinDepth(0)
+                ->setMaxDepth(0)
+                ->setUlClass('nav navbar-nav')
+        ?>
+    </div>
+    <div class="container">
+        <?php // add the following line: ?>
+        <?= $this->navigation('navigation')->breadcrumbs()->setMinDepth(0)
+                ->setPartial('partial/breadcrumb')
+        ?>
+<?= $this->content ?>
+    </div>
+</html>
